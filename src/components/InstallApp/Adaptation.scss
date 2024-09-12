@@ -1,0 +1,33 @@
+.installApp {
+    width: 1380px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    color: white;
+    h1 {
+        text-align: center;
+        color: white;
+        font-size: 1.7rem;
+    }
+
+
+    @media screen and (max-width: 700px) {
+    .installAppRow {
+        flex-wrap: wrap;
+         img {
+            width: 200px;
+            margin-top: 1rem;
+            border-radius: 10px;
+        }
+    }
+    }
+
+    @media screen and (max-width: 1000px) {
+        display: flex;
+        flex-wrap: wrap;   
+    }
+
+}

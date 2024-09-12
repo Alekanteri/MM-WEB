@@ -1,0 +1,31 @@
+.contact {
+    width: 1380px;
+    margin: auto;
+  
+    @media screen and (max-width: 1400px) {
+      width: 1100px;
+      margin: auto;
+    }
+
+    @media screen and (max-width: 1187px) {
+        width: 100%;
+        margin: auto;
+
+        .contactContainer {
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+      }
+
+      @media screen and (max-width: 565px) {
+        width: 100%;
+        margin: auto;
+
+        .postFromContainer {
+            width: 100%;
+        }
+      }
+
+  }
+  

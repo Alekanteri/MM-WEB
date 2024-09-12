@@ -1,0 +1,39 @@
+section {
+    width: 100%;
+    margin: auto;
+    padding: 10px;
+    .prosContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        @media screen and (max-width: 1323px) {
+          .prosInfo {
+            width: 340px;
+          }
+        }
+      
+        @media screen and (max-width: 1115px) {
+          .prosInfo {
+            width: 300px;
+      
+            span {
+              font-size: 18px;
+            }
+          }
+      
+          @media screen and (max-width: 988px) {
+            .prosInfo {
+                width: 100%;
+      
+              span {
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      
+        
+      }
+      
+}

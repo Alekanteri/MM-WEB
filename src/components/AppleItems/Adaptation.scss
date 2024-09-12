@@ -1,0 +1,135 @@
+.appleItems {
+  width: 1380px;
+  margin: auto;
+
+  @media screen and (max-width: 1500px) {
+    width: 1180px;
+    margin: auto;
+
+    figcaption {
+      font-size: 18px;
+    }
+
+    figure {
+      button {
+        padding: 13px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1232px) {
+    width: 1000px;
+    margin: auto;
+    figcaption {
+      font-size: 18px;
+    }
+    .appleItemsContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media screen and (max-width: 1060px) {
+    width: 900px;
+    margin: auto;
+    figcaption {
+      font-size: 18px;
+    }
+
+    .appleItemsContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media screen and (max-width: 948px) {
+    width: 700px;
+    margin: auto;
+    figcaption {
+      font-size: 18px;
+    }
+
+    .appleItemsContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media screen and (max-width: 730px) {
+    width: 600px;
+    margin: auto;
+    figcaption {
+      font-size: 18px;
+    }
+
+    .appleItemsContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media screen and (max-width: 647px) {
+    figcaption {
+      font-size: 18px;
+    }
+
+    width: 500px;
+    margin: auto;
+    .appleItemsContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    figure {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 546px) {
+    width: 400px;
+    margin: auto;
+
+    figcaption {
+      font-size: 16px;
+    }
+
+    .appleItemsContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    figure {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+
+      button {
+        padding: 8px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 460px) {
+    width: 100%;
+    margin: auto;
+    figcaption {
+      font-size: 13px;
+    }
+
+    .appleItemsContainer {
+      display: grid;
+      justify-content: center;
+      grid-template-columns: 170px 170px;
+    }
+
+    figure {
+      button {
+        width: 100%;
+        padding: 8px;
+        font-size: 12px;
+      }
+    }
+  }
+}
