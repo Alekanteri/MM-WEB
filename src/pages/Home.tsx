@@ -22,11 +22,11 @@ const Home: React.FC = (): ReactElement => {
         <Main />
         <PopularCategories />
         <AppleItems />
-         <SamsungItems />
-        <Calculator />
+        <SamsungItems />
         <XiaomiItems />
+        <Notebooks />
+        <Calculator />
         <Reviews />
-        <Notebooks /> 
         <Pros />
         <AboutUs />
         <Contact />

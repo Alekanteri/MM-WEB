@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import Modal from "@mui/material/Modal";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,11 +9,60 @@ import "swiper/css/pagination";
 import BasicTable from "../TableContainer/TableContainer";
 import "./Adaptation.scss";
 
+interface IProduct {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  description: string;
+}
+
+const products: IProduct[] = [
+  {
+    id: 1,
+    name: "Apple iPhone 15 Pro 128GB",
+    price: 103300,
+    image:
+      "https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27664.970-500x500.webp",
+    description:
+      "Смартфон Apple iPhone 15 Pro 256 ГБ, Dual: nano SIM + eSIM, синий титан",
+  },
+  {
+    id: 2,
+    name: "Apple iPhone 15 Pro 256GB",
+    price: 129400,
+    image:
+      "https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27682.970-500x500.webp",
+    description:
+      "Смартфон Apple iPhone 15 Pro 256 ГБ, Dual: nano SIM + eSIM, синий титан",
+  },
+  // ...
+];
 const AppleItems: React.FC = (): ReactElement => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClick = () => {};
   const handleClose = () => setOpen(false);
+  // const handleClick = () => {};
+
+  const ProductCard = ({ product }: { product: IProduct }) => (
+    <figure className="w-fit cursor-pointer transition-all m-auto bg-white px-14 py-5 rounded-2xl shadow-lg">
+      <figcaption className="font-[600] text-center text-[20px]">
+        {product.name}
+      </figcaption>
+      <img className="mt-5" width={250} src={product.image} alt="" />
+      <div className="text-center mt-5 items-center">
+        <figcaption className="font-[600] text-[20px]">
+          {product.price}₽
+        </figcaption>
+        <button
+          onClick={handleOpen}
+          className="w-full relative inline-flex mt-3 items-center justify-center px-8 py-3 sm:text-sm sm:py-3.5 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+        >
+          Купить
+        </button>
+      </div>
+    </figure>
+  );
 
   return (
     <section className="appleItems">
@@ -21,171 +70,9 @@ const AppleItems: React.FC = (): ReactElement => {
         Продукт Apple
       </h1>
       <div className="grid grid-cols-4 items-center gap-5 appleItemsContainer">
-        <figure className="w-fit cursor-pointer transition-all m-auto bg-white px-14 py-5 rounded-2xl shadow-lg">
-          <div onClick={handleOpen}>
-            <figcaption className=" font-[600] text-center text-[20px]">
-              Apple iPhone 15 <br /> Pro 128GB
-            </figcaption>
-            <img
-              className="mt-5"
-              width={250}
-              src="https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27664.970-500x500.webp"
-              alt=""
-            />
-          </div>
-          <div className="text-center mt-5 items-center">
-            <figcaption className="font-[600] text-[20px]">103300₽</figcaption>
-            <button
-              onClick={handleOpen}
-              className="w-full relative inline-flex mt-3 items-center justify-center px-8 py-3 sm:text-sm sm:py-3.5 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Купить
-            </button>
-          </div>
-        </figure>
-        <figure className="w-fit cursor-pointer transition-all m-auto bg-white px-14 py-5 rounded-2xl shadow-lg">
-          <figcaption className="font-[600] text-center text-[20px]">
-            Apple iPhone 15 Pro
-            <br />
-            256GB
-          </figcaption>
-          <img
-            className="mt-5"
-            width={250}
-            src="https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27682.970-500x500.webp"
-            alt=""
-          />
-          <div className="text-center mt-5 items-center">
-            <figcaption className="font-[600] text-[20px]">129400₽</figcaption>
-            <button
-              onClick={handleOpen}
-              className="w-full relative inline-flex mt-3 items-center justify-center px-8 py-3 sm:text-sm sm:py-3.5 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Купить
-            </button>
-          </div>
-        </figure>
-        <figure className="w-fit cursor-pointer transition-all m-auto bg-white px-14 py-5 rounded-2xl shadow-lg">
-          <figcaption className="font-[600] text-center text-[20px]">
-            Apple iPhone 15 <br /> Pro 128GB
-          </figcaption>
-          <img
-            className="mt-5"
-            width={250}
-            src="https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27651.970-500x500.webp"
-            alt=""
-          />
-          <div className="text-center mt-5 items-center">
-            <figcaption className="font-[600] text-[20px]">129400₽</figcaption>
-            <button
-              onClick={handleOpen}
-              className="w-full relative inline-flex mt-3 items-center justify-center px-8 py-3 sm:text-sm sm:py-3.5 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Купить
-            </button>
-          </div>
-        </figure>
-        <figure className="w-fit cursor-pointer transition-all m-auto bg-white px-14 py-5 rounded-2xl shadow-lg">
-          <figcaption className="font-[600] text-center text-[20px]">
-            Apple iPhone 15 <br /> Pro 128GB
-          </figcaption>
-          <img
-            className="mt-5"
-            width={250}
-            src="https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27640.970-500x500.webp"
-            alt=""
-          />
-          <div className="text-center mt-5 items-center">
-            <figcaption className="font-[600] text-[20px]">129400₽</figcaption>
-            <button
-              onClick={handleOpen}
-              className="w-full relative inline-flex mt-3 items-center justify-center px-8 py-3 sm:text-sm sm:py-3.5 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Купить
-            </button>
-          </div>
-        </figure>
-        <figure className="w-fit cursor-pointer transition-all m-auto bg-white px-14 py-5 rounded-2xl shadow-lg">
-          <figcaption className="font-[600] text-center text-[20px]">
-            Apple iPhone 12 <br /> 256GB White
-          </figcaption>
-          <img
-            className="mt-5"
-            width={250}
-            src="https://static.eldorado.ru/img1/p/b/75907300.jpg/resize/360x360/"
-            alt=""
-          />
-          <div className="text-center mt-5 items-center">
-            <figcaption className="font-[600] text-[20px]">129400₽</figcaption>
-            <button
-              onClick={handleOpen}
-              className="w-full relative inline-flex mt-3 items-center justify-center px-8 py-3 sm:text-sm sm:py-3.5 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Купить
-            </button>
-          </div>
-        </figure>
-        <figure className="w-fit cursor-pointer transition-all m-auto bg-white px-14 py-5 rounded-2xl shadow-lg">
-          <figcaption className="font-[600] text-center text-[20px]">
-            Apple iPhone 13 <br /> 256GB Midnight
-          </figcaption>
-          <img
-            className="mt-5"
-            width={250}
-            src="https://static.eldorado.ru/img1/p/b/39317300.jpg/resize/360x360/"
-            alt=""
-          />
-          <div className="text-center mt-5 items-center">
-            <figcaption className="font-[600] text-[20px]">129400₽</figcaption>
-            <button
-              onClick={handleOpen}
-              className="w-full relative inline-flex mt-3 items-center justify-center px-8 py-3 sm:text-sm sm:py-3.5 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Купить
-            </button>
-          </div>
-        </figure>
-        <figure className="w-fit cursor-pointer transition-all m-auto bg-white px-14 py-5 rounded-2xl shadow-lg">
-          <figcaption className="font-[600] text-center text-[20px]">
-            Apple iPhone 14 <br /> 128GB Blue
-          </figcaption>
-          <img
-            className="mt-5"
-            width={250}
-            src="https://static.eldorado.ru/img1/b/bb/06846300.jpg/resize/1920x1080/"
-            alt=""
-          />
-          <div className="text-center mt-5 items-center">
-            <figcaption className="font-[600] text-[20px]">129400₽</figcaption>
-            <button
-              onClick={handleOpen}
-              className="w-full relative inline-flex mt-3 items-center justify-center px-8 py-3 sm:text-sm sm:py-3.5 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Купить
-            </button>
-          </div>
-        </figure>
-        <figure className="w-fit cursor-pointer transition-all m-auto bg-white px-14 py-5 rounded-2xl shadow-lg">
-          <figcaption className="font-[600] text-center text-[20px]">
-            Apple iPhone 14 <br />
-            Pro Max 256GB
-          </figcaption>
-          <img
-            className="mt-5"
-            width={250}
-            src="https://static.eldorado.ru/img1/p/b/45407300.jpg/resize/360x360/"
-            alt=""
-          />
-          <div className="text-center mt-5 items-center">
-            <figcaption className="font-[600] text-[20px]">129400₽</figcaption>
-            <button
-              onClick={handleOpen}
-              className="w-full relative inline-flex mt-3 items-center justify-center px-8 py-3 sm:text-sm sm:py-3.5 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Купить
-            </button>
-          </div>
-        </figure>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
       <Modal
         open={open}
@@ -194,13 +81,14 @@ const AppleItems: React.FC = (): ReactElement => {
         aria-describedby="modal-modal-description"
       >
         <>
+          {/* Modal content */}
           <div
             onClick={handleClose}
             className="w-fit m-5 transition-all hover:scale-110 rounded-full absolute right-1 border-2 border-[#7266F3] cursor-pointer"
           >
             <IoClose color="#7266F3" size={32} />
           </div>
-          <div className="w-full h-full px-[10rem] bg-white flex flex-wrap justify-center items-center">
+          <div className="w-full h-full px-[10rem] bg-white grid grid-cols-1 md:grid-cols-2 place-items-center">
             <Swiper
               pagination={{
                 dynamicBullets: true,
@@ -208,27 +96,11 @@ const AppleItems: React.FC = (): ReactElement => {
               modules={[Pagination]}
               className="mySwiper"
             >
-              <SwiperSlide>
-                <img
-                  width={600}
-                  src="https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27664.970-500x500.webp"
-                  alt=""
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  width={500}
-                  src="https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27665.970-500x500.webp"
-                  alt=""
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  width={500}
-                  src="https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27666.970-500x500.webp"
-                  alt=""
-                />
-              </SwiperSlide>
+              {products.map((product) => (
+                <SwiperSlide key={product.id}>
+                  <img width={300} src={product.image} alt="" />
+                </SwiperSlide>
+              ))}
             </Swiper>
 
             <div className="mt-[-1rem]">
@@ -236,32 +108,11 @@ const AppleItems: React.FC = (): ReactElement => {
                 style={{ fontWeight: "600", fontSize: "1.6rem" }}
                 className="py-5 mt-10"
               >
-                Смартфон Apple iPhone 15 Pro 256 ГБ, <br /> Dual: nano SIM +
-                eSIM, синий титан
+                {products[0].description}
               </h1>
 
-              <h4 className="text-xl font-[600]">Цена по скидук</h4>
-              <h1 className="flex items-center gap-3 font-bold text-4xl mt-5">
-                103 300₽
-                <span className="bg-[#E6008C] text-white text-xs p-1 px-3 rounded-full">
-                  29%
-                </span>
-              </h1>
-              <button
-                onClick={handleClick}
-                className="w-fit h-[48px] mt-5 cursor-pointer hover:bg-[#857aff] active:bg-[#8277ff] bg-[#7266F3] px-5 p-3 rounded-[10px] text-white font-[600]"
-              >
-                Купить
-              </button>
-              <div className="mt-5">
-                <h1 className="text-xl font-[600]">Объем памяти</h1>
-                <p className="w-fit px-3 border border-black mt-5 rounded-[5px] font-bold">
-                  128 Гб
-                </p>
-              </div>
-              <div className="mt-5">
-                <BasicTable />
-              </div>
+              <h4 className="text-xl font-[600]">Цена по скидке</h4>
+              <BasicTable />
             </div>
           </div>
         </>

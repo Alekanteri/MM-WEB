@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import css from "./Calculator.module.scss";
 
-
 const Calculator = () => {
   const [count, setCount] = useState(50000);
   const [month, setMonth] = useState(3);

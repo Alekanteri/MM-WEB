@@ -1,27 +1,23 @@
-import React, { ReactElement } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { InputMask } from "primereact/inputmask";
-import { PiTelegramLogo } from "react-icons/pi";
-import { ToastContainer, toast } from "react-toastify";
+// import { PiTelegramLogo } from "react-icons/pi";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import './SendIn.scss'
+import "./SendIn.scss";
+
 interface FormData {
   fullName: string;
   tel: string;
 }
 
-const Contact: React.FC = (): ReactElement => {
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [message, setMessage] = React.useState("");
+const Contact: React.FC = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const {
-    register,
-    formState: { isValid },
-    handleSubmit,
-    reset,
-  } = useForm<FormData>({
+  const { register, handleSubmit, formState } = useForm<FormData>({
     mode: "onBlur",
   });
 
@@ -60,7 +56,7 @@ const Contact: React.FC = (): ReactElement => {
   const notify = () =>
     toast.success(
       <>
-        <h1 className="">Спасибо за заявку!</h1> <br />
+        <h1>Спасибо за заявку!</h1> <br />
         <span>
           Менеджер связжется с <br />
           вами в ближайшее время!
@@ -69,57 +65,43 @@ const Contact: React.FC = (): ReactElement => {
     );
 
   return (
-    <section className="left-10 right-0">
-      <div className="w-[500px] m-auto bg-white p-5 rounded-2xl postFromContainer">
-        <h1
-          style={{
-            fontWeight: "600",
-            fontSize: "1.5rem",
-            marginBottom: "10px",
-          }}
-          className="text-center py-5"
-        >
+    <section className="w-1/2 mx-auto p-5">
+      <div className="bg-white p-5 rounded-2xl flex flex-col gap-4">
+        <h1 className="text-center text-2xl font-bold mb-5">
           Подать заявку на рассрочку
         </h1>
-        <form onSubmit={sendEmail}>
+        <form onSubmit={handleSubmit(sendEmail)}>
           <div className="flex flex-col gap-3 mb-3">
             <input
-              className="bg-[#F7F7FB] placeholder:text-[18px] mb-5 text-xl placeholder:text-[#8A9BB5] font-[400] h-[60px] outline-none rounded-2xl p-2 px-5"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              className="bg-gray-100 placeholder:text-gray-400 text-xl font-medium h-12 outline-none rounded-2xl p-2 px-5"
+              {...register("fullName")}
               placeholder="ФИО клиента"
               required
             />
             <InputMask
-              className="bg-[#F7F7FB] placeholder:text-[18px] mb-5 text-xl placeholder:text-[#8A9BB5] font-[400] h-[60px] outline-none rounded-2xl p-2 px-5"
+              className="bg-gray-100 placeholder:text-gray-400 text-xl font-medium h-12 outline-none rounded-2xl p-2 px-5"
               id="phone"
               mask="+7 (999) 999-99-99"
               placeholder="Номер телефона"
-              value={email}
-              onChange={(e: any) => setEmail(e.target.value)}
+              {...register("tel")}
               required
-            ></InputMask>
+            />
           </div>
 
-          <div className="w-full relative inline-flex  mb-5 group">
-            <div className="w-full absolute transitiona-all duration-1000 opacity-70 inset-0 bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"></div>
-
-            <button
-              onClick={notify}
-              className="w-full relative inline-flex items-center justify-center px-8 py-3 sm:text-sm sm:py-3.5 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-            >
-              Оформить рассрочку
-            </button>
-          </div>
+          <button
+            onClick={notify}
+            className="w-full relative inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+          >
+            Оформить рассрочку
+          </button>
         </form>
         <ToastContainer />
-        <span className="text-[14px]">
+        <span className="text-sm">
           Оставьте заявку для консультации по рассрочке без банка. Наша команда
           наших менеджеров рассмотрит ваш запрос и свяжется с вами в ближайшее
           время.
         </span>
       </div>
-      <ToastContainer />
     </section>
   );
 };
