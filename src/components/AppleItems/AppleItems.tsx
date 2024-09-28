@@ -6,15 +6,24 @@ import { IoClose } from "react-icons/io5";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import BasicTable from "../TableContainer/TableContainer";
+import { BasicTable } from "../TableContainer/TableContainer";
 import "./Adaptation.scss";
+
+type ProductCharsType = { [key: string]: number | string };
+//! Короче, тут ты ни чего не трогаешь, так и оставляешь, в файле таблицы точно такой же тип, вынеси вообще все типы и интерфейсы в отдельные файлы по компонентам, чтобы мозги не ебать по правилам такие файлы называются "Имякомпонента.d.ts"
+
+interface ProductProps {
+  title: string;
+  price: number;
+  chars: ProductCharsType; //! Тут тоже не трож
+}
 
 interface IProduct {
   id: number;
   name: string;
   price: number;
   image: string;
-  description: string;
+  description: ProductProps;
 }
 
 const products: IProduct[] = [
@@ -24,25 +33,34 @@ const products: IProduct[] = [
     price: 103300,
     image:
       "https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27664.970-500x500.webp",
-    description:
-      "Смартфон Apple iPhone 15 Pro 256 ГБ, Dual: nano SIM + eSIM, синий титан",
+    description: {
+      title:
+        "Смартфон Apple iPhone 15 Pro 256 ГБ, Dual: nano SIM + eSIM, синий титан",
+      price: 103300,
+      //! Эта вся хуйня идет в модальное окно, делай через мапинг как хочешь, я для теста делал с одним элементом
+      chars: {
+        //! Пишешь обязательно так же как и указано в типе!!!!!  Тоесть ключ - строка, значение - строка или число
+        "Объем памяти": 512,
+        Батарея: "4000mA",
+        Вес: 0.2,
+      },
+    },
   },
-  {
-    id: 2,
-    name: "Apple iPhone 15 Pro 256GB",
-    price: 129400,
-    image:
-      "https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27682.970-500x500.webp",
-    description:
-      "Смартфон Apple iPhone 15 Pro 256 ГБ, Dual: nano SIM + eSIM, синий титан",
-  },
+  // {
+  //   id: 2,
+  //   name: "Apple iPhone 15 Pro 256GB",
+  //   price: 129400,
+  //   image:
+  //     "https://рассрочка-кредит.рф/image/cachewebp/catalog/pics/27682.970-500x500.webp",
+  //   description:
+  //     "Смартфон Apple iPhone 15 Pro 256 ГБ, Dual: nano SIM + eSIM, синий титан",
+  // },
   // ...
 ];
 const AppleItems: React.FC = (): ReactElement => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  // const handleClick = () => {};
 
   const ProductCard = ({ product }: { product: IProduct }) => (
     <figure className="w-fit cursor-pointer transition-all m-auto bg-white px-14 py-5 rounded-2xl shadow-lg">
@@ -108,11 +126,13 @@ const AppleItems: React.FC = (): ReactElement => {
                 style={{ fontWeight: "600", fontSize: "1.6rem" }}
                 className="py-5 mt-10"
               >
-                {products[0].description}
+                {products[0].description.title}
               </h1>
-
-              <h4 className="text-xl font-[600]">Цена по скидке</h4>
-              <BasicTable />
+              <h4 className="text-xl font-[600]">
+                Цена по скидке {products[0].description.price}
+              </h4>
+              {/* //! Короче тут ни чего не трогай в файле компонента я все настроил, так что там можешь только если визуально поиграться */}
+              <BasicTable description={products[0].description.chars} />
             </div>
           </div>
         </>
