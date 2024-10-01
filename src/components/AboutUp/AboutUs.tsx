@@ -1,34 +1,30 @@
-import React, { ReactElement } from "react";
-// @ts-ignore
-import About from "../../assets/img/MOBILEMIR.jpg";
-// @ts-ignore
-import MW from "../../assets/img/MW.png";
-import { GoArrowRight } from "react-icons/go";
-import { GoArrowLeft } from "react-icons/go";
-import "./Adaptation.scss";
+import React, { ReactElement, useState } from "react";
+import { GoArrowRight, GoArrowLeft } from "react-icons/go";
 
-const AboutUs: React.FC = (): ReactElement => {
-  const [isVisible, setIsVisible] = React.useState(false);
+interface AboutUsProps {}
+
+const AboutUs: React.FC<AboutUsProps> = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
 
   return (
-    <section className="bg-white rounded-t-[4rem]">
-      <div className="aboutUsContainer">
+    <section className="container mx-auto p-6 md:p-12 lg:p-24 bg-white rounded-t-[4rem]">
+      <div className="grid grid-cols-2 gap-8 justify-center items-center">
         <div className="flex justify-center">
           <img
-            className="rounded-2xl z-20 hover:scale-105 transition-all MobileMir"
-            src={About}
+            className="rounded-2xl z-20 hover:scale-105 transition-all w-[450px] md:w-[400px]"
+            src={require("../../assets/img/MOBILEMIR.jpg")} // Use require instead of importing images directly
             alt="Mobile Mir"
           />
         </div>
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl xl:text-4xl creditPhoneText">
+          <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl xl:text-4xl text-center mb-4">
             Телефон в рассрочку надежно, выгодно, быстро в Ингушетии
           </h1>
-          <h3 className="w-[700px] mt-5 text-[16px] infoText">
+          <h3 className="mt-5 text-[16px] w-full mx-auto">
             Мобильный Мир - ведущий розничный торговец мобильными устройствами и
             аксессуарами, предлагающий широкий ассортимент товаров ведущих
             брендов по конкурентоспособным ценам. Наша миссия - предоставлять
@@ -44,7 +40,7 @@ const AboutUs: React.FC = (): ReactElement => {
           </button>
           {isVisible && (
             <>
-              <h3 className="w-[700px] mt-5 text-[16px] infoText">
+              <h3 className="mt-5 text-[16px] w-full mx-auto">
                 Рассрочка без участия банка В "Мобильном мире" понимают, что
                 покупка нового мобильного устройства может стать существенной
                 инвестицией. Именно поэтому мы предлагаем удобную рассрочку без
@@ -53,7 +49,7 @@ const AboutUs: React.FC = (): ReactElement => {
                 каких-либо скрытых комиссий или процентных ставок.
               </h3>
 
-              <h3 className="w-[700px] mt-5 text-[16px] infoText">
+              <h3 className="mt-5 text-[16px] w-full mx-auto">
                 Преимущества нашего плана рассрочки: Без участия банка: Мы не
                 требуем никаких банковских гарантий или проверок
                 кредитоспособности, что упрощает получение одобрения. Гибкие
